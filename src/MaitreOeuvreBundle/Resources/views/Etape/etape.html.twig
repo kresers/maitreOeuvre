@@ -1,0 +1,75 @@
+{% extends "MaitreOeuvreBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block contents %}
+    {{ parent() }}
+
+    {% block body %}
+
+        {{ parent() }}
+
+        {# Permet d'afficher le message d'alerte en cas de succès/échec #}
+
+                {% if app.session.flashbag.has('message') %}
+                    <div class="alert alert-success alert-dismissable">
+                        {% for flashMessage in app.session.flashbag.get('message') %}
+                            {{ flashMessage }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+           <a href="{{ path('etape_ajout') }}" class="btn btn-success" role="button" aria-pressed="true"> <span class="glyphicon glyphicon-plus"></span>Ajout</a>
+
+
+
+        <table class="table table-hover">
+            <thead>
+            <th>Intitulé</th>
+            <th>Chantier</th>
+            <th>Specialité</th>
+            <th>Date début</th>
+            <th>Date Fin</th>
+            <th>Actions</th>
+
+            </thead>
+            {% for etape in listeEtape %}
+                <tr>
+                    <td>{{ etape.intitule }}</td>
+                    <td>{{ etape.chantier.numPermis }}</td>
+                    <td>{{ etape.specialite.libelle }}</td>
+                    <td>{{ etape.dateDeb|date('d/m/Y') }}</td>
+                    <td>{{ etape.dateFin|date('d/m/Y') }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('etape_modif',{'id':etape.id} ) }}"><i
+                                        class="glyphicon glyphicon-pencil"></i></a>
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('etape_supp',{'id':etape.id} ) }}"><i
+                                        class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+        </table>
+
+
+    {% endblock %}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+
+
+{% endblock %}

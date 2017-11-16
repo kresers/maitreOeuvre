@@ -1,0 +1,12 @@
+php app/console doctrine:generate:entity //Créer une entité
+php app/console doctrine:schema:update --force //Mettre la BDD à jour
+php app/console doctrine:generate:entities MaitreOeuvreBundle:Chantier //Permet de génerer les get et set de chantier
+php app/console doctrine:generate:form MaitreOeuvreBundle:Chantier //Permet de créer un form pour l'entité
+php app/console doctrine:fixtures:load // Permet de charger les inserts dans la BDD
+php app/console
+php app/console
+php app/console
+php app/console
+php app/console
+php app/console
+php app/console

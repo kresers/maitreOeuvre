@@ -1,0 +1,89 @@
+{% extends "MaitreOeuvreBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block contents %}
+    {{ parent() }}
+
+    {% block body %}
+
+        {{ parent() }}
+
+        {% if app.session.flashBag.has('addSuccess') %}
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {% for flashMessage in app.session.flashbag.get('addSuccess') %}
+                    {{ flashMessage }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if app.session.flashBag.has('deleteSuccess') %}
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {% for flashMessage in app.session.flashbag.get('deleteSuccess') %}
+                    {{ flashMessage }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if app.session.flashBag.has('updateSuccess') %}
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {% for flashMessage in app.session.flashbag.get('updateSuccess') %}
+                    {{ flashMessage }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <a href="{{ path('visite_chantier_ajout') }}" class="btn btn-success" role="button" aria-pressed="true"><span
+                    class="glyphicon glyphicon-plus"></span>Ajout</a>
+
+
+        <table class="table table-hover">
+            <tr>
+                <th>Etape concerné</th>
+                <th>Date de visite</th>
+                <th>Compte rendu</th>
+                <th>Action</th>
+            </tr>
+            {% for infoVisiteChantier in listVisiteChantier %}
+
+                <tr>
+                    <td>{{ infoVisiteChantier.etape.intitule}}</td>
+                    <td>{{ infoVisiteChantier.dateVisite|date('d/m/Y') }}</td>
+                    <td>{{ infoVisiteChantier.compteRendu }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('visite_chantier_modif',{'id':infoVisiteChantier.id} ) }}"><i
+                                        class="glyphicon glyphicon-pencil"></i></a>
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('visite_chantier_supp',{'id':infoVisiteChantier.id} ) }}"><i
+                                        class="glyphicon glyphicon-trash"></i></a>
+
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+
+    {% endblock %}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

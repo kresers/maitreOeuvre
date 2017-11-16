@@ -1,0 +1,38 @@
+{% extends "MaitreOeuvreBundle::layout.html.twig" %}
+
+{% block contents %}
+    {{ parent() }}
+    {% block body %}
+        {{ parent() }}
+
+
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(form) }}
+
+        {# design pour l'input "Prénom" #}
+        <div class="form-group">
+            {{ form_label(form.libelle, "Libellé", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.libelle) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        {# Génération du label + error + widget pour un champ #}
+        <div class="form-group">
+            {{ form_row(form.libelle) }}
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-success center-block'}}) }}
+        </div>
+
+
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+        {# Fermeture de la balise <form> du formulaire HTML #}
+
+    {% endblock %}
+
+{% endblock %}

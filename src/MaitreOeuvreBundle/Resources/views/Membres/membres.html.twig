@@ -1,0 +1,245 @@
+{% extends "MaitreOeuvreBundle::layout.html.twig" %}
+
+
+{% block contents %}
+    {{ parent() }}
+
+    {% block body %}
+        {{ parent() }}
+
+        {% if app.session.flashBag.has('message') %}
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                {% for flashMessage in app.session.flashbag.get('message') %}
+                    {{ flashMessage }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if app.session.flashBag.has('modifSuccess') %}
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {% for flashMessage in app.session.flashbag.get('modifSuccess') %}
+                    {{ flashMessage }}
+
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+        {% for flashMessage in app.session.flashbag.get('clientSuppSuccess') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+
+        <a href="{{ path('ajout_client') }}" class="btn btn-success" role="button" aria-pressed="true">
+            <span class="glyphicon glyphicon-plus"></span>
+            Ajouter un client</a>
+
+        <a href="{{ path('ajout_artisan') }}" class="btn btn-success" role="button" aria-pressed="true">
+            <span class="glyphicon glyphicon-plus"></span>
+            Ajouter un artisan</a>
+
+        <a href="{{ path('ajout_secretaire') }}" class="btn btn-success" role="button" aria-pressed="true">
+            <span class="glyphicon glyphicon-plus"></span>
+            Ajouter une secrétaire</a>
+
+
+        <div>
+            <div class="pull-right">
+                <button class="btn filter-button" data-filter="all">Tous les membres</button>
+                <button class="btn filter-button" data-filter="clients">Clients</button>
+                <button class="btn filter-button" data-filter="artisans">Artisans</button>
+                <button class="btn filter-button" data-filter="secretaires">Secrétaires</button>
+            </div>
+        </div>
+
+        <div class="filter clients">
+            <div class="col-md-12">
+                <center><h1>Clients</h1></center>
+                <table class="table table-hover a" id="table">
+                    <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Téléphone portable</th>
+                        <th>Téléphone fixe</th>
+                        <th>Actif ?</th>
+                        <th>Actions</th>
+
+                        </th>
+                        <th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for client in listeClients %}
+                        <tr data-id="{{ client.id }}">
+                            <td>{{ client.prenom }}</td>
+                            <td>{{ client.telPort }}</td>
+                            <td>{{ client.telFixe }}</td>
+                            {#<td>{{ membre.cp }}</td>#}
+                            {#<td>{{ membre.etat }}</td>#}
+                            {#<td>{{ membre.dateFin|date('d/m/Y') }}</td>#}
+                            <td>
+                                <input id="refresh" type="checkbox"
+                                       data-toggle="toggle" data-size="mini"
+                                       data-onstyle="success" data-offstyle="danger"
+                                       data-on="Oui"
+                                       data-off="Non" {% if client.enabled == 1 %} checked="checked" {% endif %}>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-default btn-sm"
+                                       href="{{ path('consult_client',{'id':client.id} ) }}"><i
+                                                class="glyphicon glyphicon-eye-open"></i></a>
+                                    <a class="btn btn-default btn-sm"
+                                       href="{{ path('client_modif',{'id':client.id} ) }}"><i
+                                                class="glyphicon glyphicon-pencil"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="filter artisans">
+            <div class="col-md-12">
+                <center><h1>Artisans</h1></center>
+
+                <table class="table table-hover b">
+                    <thead>
+                    <tr>
+                        <th>Nom utilisateur</th>
+                        <th>Spécialité</th>
+                        <th>Portable</th>
+                        <th>Adresse</th>
+                        <th>E-mail / Web</th>
+                        <th>Actif ?</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for artisan in listeArtisan %}
+                        <tr data-id="{{ artisan.id }}">
+                            <td>{{ artisan.username }}</td>
+                            <td>{{ artisan.specialite }}</td>
+                            <td>{{ artisan.telPort }}</td>
+                            <td>{{ artisan.rue }}<br/> {{ artisan.cp }} {{ artisan.ville | upper }}</td>
+                            <td>{{ artisan.email }}<br/>{{ artisan.site }}</td>
+                            <td data-label="active">
+                                <input id="refresh" type="checkbox"
+                                       data-toggle="toggle" data-size="mini"
+                                       data-onstyle="success" data-offstyle="danger"
+                                       data-on="Oui"
+                                       data-off="Non" {% if artisan.enabled == 1 %} checked="checked" {% endif %}>
+
+                            </td>
+
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-default btn-sm"
+                                       href="{{ path ('consult_artisan',{'id': artisan.id }) }}"><i
+                                                class="glyphicon glyphicon-eye-open"></i></a>
+                                    <a class="btn btn-default btn-sm"
+                                       href="{{ path ('modif_artisan',{'id': artisan.id }) }}"><i
+                                                class="glyphicon glyphicon-pencil"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="filter secretaires">
+            <div class="col-md-12">
+                <center><h2>Secrétaires</h2></center>
+                <table class="table table-hover c">
+                    <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom d'utilisateur</th>
+                        <th>Actif ?</th>
+                        <th>Actions</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for secretaire in listeSecretaire %}
+                        <tr data-id="{{ secretaire.id }}">
+                            <td>{{ secretaire.prenom }}</td>
+                            <td>{{ secretaire.username }}</td>
+
+                            <td>
+                                <input id="refresh" type="checkbox"
+                                       data-toggle="toggle" data-size="mini"
+                                       data-onstyle="success" data-offstyle="danger"
+                                       data-on="Oui"
+                                       data-off="Non" {% if secretaire.enabled == 1 %} checked="checked" {% endif %}>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-default btn-sm"
+                                       href="{{ path('secretaire_modif',{'id':secretaire.id} ) }}"><i
+                                                class="glyphicon glyphicon-pencil"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {% block javascripts %}
+            {{ parent() }}
+            <script type="text/javascript">
+                $(function () {
+                    $('#page-wrapper').find('.toggle input[type="checkbox"]').change(function () {
+                        var toggle = $(this);
+                        var id = $(this).closest('tr').data('id');
+                        var newValue = toggle.prop('checked');
+                        var oldValue = !newValue;
+
+                        if (newValue == newValue) {
+                            newValue = oldValue;
+                        }
+
+                        var toggleUrl = "{{ path('active_desactive_membre', { action: 'activeDesactiveMembre' })|raw }}"
+                            + "&id=" + $(this).closest('tr').data('id')
+                            + "&newValue=" + newValue.toString();
+
+
+                        var toggleRequest = $.ajax({type: "GET", url: toggleUrl, data: {id: id}});
+
+                        toggleRequest.done(function (result) {
+                        });
+
+                        toggleRequest.fail(function () {
+                            toggle.bootstrapToggle(oldValue == true ? 'on' : 'off');
+                            toggle.bootstrapToggle('disable');
+                        });
+                    });
+                });
+            </script>
+
+
+
+        {% endblock %}
+
+    {% endblock %}
+{% endblock %}
+
+
+
+

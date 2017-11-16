@@ -1,0 +1,15 @@
+{% extends "MaitreOeuvreBundle::layout.html.twig" %}
+
+{% block contents %}
+    {{ parent() }}
+    {% block body %}
+        {{ parent() }}
+
+        {{ form_start(form) }}
+        <p>Etes-vous certain de vouloir supprimer ?</p>
+        <a href="{{ path('specialite_index')}}" class="btn btn-default">Annuler</a>
+        {{ form_widget(form.delete, {'attr': {'class': 'btn btn-danger'}}) }}
+        {{ form_end(form) }}
+
+    {% endblock %}
+{% endblock %}

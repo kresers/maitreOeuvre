@@ -1,0 +1,228 @@
+{% extends "MaitreOeuvreBundle::layout.html.twig" %}
+
+{% block contents %}
+    {{ parent()}}
+    {% block body %}
+        {{ parent()}}
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(form) }}
+
+
+        <div class="form-group">
+            {{ form_label(form.username, "Nom d'\utilisateur", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.username) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        {% if form.plainPassword is defined %}
+        <div class="form-group">
+            {{ form_label(form.plainPassword, "Mot de passe", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.plainPassword) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        {% endif %}
+
+
+
+        {% if form.password is defined %}
+
+        <div class="form-group">
+
+            {{ form_label(form.password.first, "Nouveau mdp", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.password.first) }}
+
+            <div class="col-sm-6">
+
+                {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            {{ form_label(form.password.second, "Confirmation mdp", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+            {{ form_errors(form.password.second) }}
+
+            <div class="col-sm-6">
+
+                {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <div class="form-group">
+            {{ form_label(form.telPort, "Téléphone portable", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.telPort) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.telPort, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.ville, "Ville", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.ville) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            {{ form_label(form.rue, "Rue", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.rue) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.rue, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.cp, "Code postal", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.cp) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.cp, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.specialite, "Spécialité", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.cp) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.specialite, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.email, "E-mail", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.email) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.site, "Site web", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.site) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.site, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.numPolice, "Numéro de police", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.numPolice) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.numPolice, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.numAssureur, "Numéro d'assureur", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.numAssureur) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.numAssureur, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.avis, "Avis", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.avis) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.avis, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.enabled, "Activé ?", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.enabled) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.enabled, {'attr': {'class': 'toggle', 'data-toggle': 'toggle', 'data-size': 'mini',
+                    'data-onstyle': 'success', 'data-offstyle': 'danger', 'data-on': 'Oui', 'data-off': 'Non'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group" style=" display: none">
+            {{ form_label(form.dateCrea, "Date de création", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.dateCrea) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.dateCrea, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.certification, "Certifications", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.certification) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.certification, {'attr': {'class': 'chosen-select'}}) }}
+            </div>
+        </div>
+
+
+
+
+
+
+        {# Génération du label + error + widget pour un champ #}
+        <div class="form-group">
+            {{ form_row(form.username) }}
+            {% if form.plainPassword is defined %}
+                {{ form_row(form.plainPassword) }}
+            {% endif %}
+            {{ form_row(form.email) }}
+            {{ form_row(form.telPort) }}
+            {{ form_row(form.ville) }}
+            {{ form_row(form.rue) }}
+            {{ form_row(form.cp) }}
+            {{ form_row(form.specialite) }}
+            {{ form_row(form.site) }}
+            {{ form_row(form.numAssureur) }}
+            {{ form_row(form.numPolice) }}
+            {{ form_row(form.dateCrea) }}
+            {{ form_row(form.enabled) }}
+
+
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-success center-block'}}) }}
+
+        </div>
+
+
+
+
+
+        {{ form_rest(form) }}
+        {{form_end(form)}}
+
+        {# Fermeture de la balise <form> du formulaire HTML #}
+
+    {% endblock %}
+
+{% endblock %}
+
+{% block javascript %}
+
+    <script>
+        $(document).ready(function() {
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+
+
+    </script>
+
+
+
+{% endblock %}

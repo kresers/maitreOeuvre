@@ -1,0 +1,57 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    encoders:
+        UserBundle\Entity\User: sha512
+        
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        login:
+            pattern: ^/login$
+            anonymous: true
+            security: false
+
+        main:
+            pattern: ^/
+            anonymous: false
+            form_login:
+                provider: fos_userbundle
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                success_handler: redirect.after.login
+            logout:
+                path: fos_user_security_logout
+                target: /login
+                success_handler: 
+            remember_me:
+                secret:   %secret%  
+                
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/patron, role: ROLE_PATRON }
+        - { path: ^/secretaire, role: ROLE_SECRETAIRE }
+        - { path: ^/client, role: ROLE_CLIENT }
+        - { path: ^/artisan, role: ROLE_ARTISAN }
+        - { path: ^/chantier, role: ROLE_PATRON }
+
+        
+        
+        
+                
+    
+       

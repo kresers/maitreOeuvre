@@ -1,0 +1,95 @@
+{% extends "MaitreOeuvreBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+
+
+{% block contents %}
+    {{ parent() }}
+
+    {% block body %}
+
+        {{ parent() }}
+
+        {% if app.session.flashBag.has('message') %}
+            <div class="alert alert-success alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                {% for flashMessage in app.session.flashbag.get('message') %}
+                    {{ flashMessage }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <a href="{{ path('chantier_ajout') }}" class="btn btn-success" role="button" aria-pressed="true"><span class="glyphicon glyphicon-plus"></span>Ajout</a>
+
+
+        <table class="table table-hover">
+            <tr>
+                <th>Numéro de permis</th>
+                <th>Rue</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+                <th>Pays</th>
+                <th>Type chantier</th>
+                <th>Date de fin de permis</th>
+                <th>Actions</th>
+            </tr>
+            {% for infoChantier in listChantier %}
+                <tr>
+                    <td>{{ infoChantier.numPermis }}</td>
+                    <td>{{ infoChantier.rue }}</td>
+                    <td>{{ infoChantier.ville }}</td>
+                    <td>{{ infoChantier.cp }}</td>
+                    <td>{{ infoChantier.etat }}</td>
+                    <td>{{ infoChantier.typeChantier.libelle }}</td>
+                    <td>{{ infoChantier.dateFin|date('d/m/Y') }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('chantier_consult',{'id':infoChantier.id} ) }}"><i
+                                        class="glyphicon glyphicon-eye-open"></i></a>
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('chantier_modif',{'id':infoChantier.id} ) }}"><i
+                                        class="glyphicon glyphicon-pencil"></i></a>
+                            <a class="btn btn-default btn-sm"
+                               href="{{ path('chantier_supp',{'id':infoChantier.id} ) }}"><i
+                                        class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+        <div class="col-md-12">
+
+            <center></center>
+
+
+        </div>
+
+
+
+
+    {% endblock %}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+{% endblock %}
+
+
+
+
+
+
+

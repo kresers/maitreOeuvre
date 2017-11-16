@@ -1,0 +1,76 @@
+{% extends "MaitreOeuvreBundle::layout.html.twig" %}
+
+{% block contents %}
+    {{ parent() }}
+    {% block body %}
+        {{ parent() }}
+
+
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(form) }}
+
+
+
+        <div class="form-group">
+            {{ form_label(form.etape, "Etape concerné", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.etape) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.etape, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+        {# design pour l'input "Date de visite" #}
+        <div class="form-group">
+            {{ form_label(form.dateVisite, "Date de visite", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.dateVisite) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.dateVisite, {'attr': {'class': ''}}) }}
+            </div>
+        </div>
+
+        {# design pour l'input "Compte Rendu" #}
+        <div class="form-group">
+            {{ form_label(form.compteRendu, "Compte rendu", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_errors(form.compteRendu) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.compteRendu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+
+
+
+
+
+        {# Génération du label + error + widget pour un champ #}
+        <div class="form-group">
+            {{ form_row(form.dateVisite) }}
+            {{ form_row(form.compteRendu) }}
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {{ form_widget(form.valider, {'attr': {'class': 'btn btn-success center-block'}}) }}
+        </div>
+
+
+
+
+
+
+
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+        {# Fermeture de la balise <form> du formulaire HTML #}
+
+    {% endblock %}
+
+    <script>
+        $(document).ready(function() {
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,207 @@
+homepage:
+    path:    /
+    defaults: { _controller: MaitreOeuvreBundle:MaitreOeuvre:index }
+
+patron_homepage:
+    path:    /patron
+    defaults: { _controller: MaitreOeuvreBundle:MaitreOeuvre:patron }
+
+secretaire_homepage:
+    path:     /secretaire
+    defaults: { _controller: MaitreOeuvreBundle:MaitreOeuvre:secretaire }
+
+client_homepage:
+    path:    /client
+    defaults: { _controller: MaitreOeuvreBundle:MaitreOeuvre:client }
+
+artisan_homepage:
+    path:    /artisan
+    defaults: { _controller: MaitreOeuvreBundle:MaitreOeuvre:artisan }
+
+chantier_index:
+    path:    /chantier
+    defaults: { _controller: MaitreOeuvreBundle:Chantier:index }
+
+chantier_ajout:
+    path:    /chantier/ajout
+    defaults: { _controller: MaitreOeuvreBundle:Chantier:ajout }
+
+chantier_modif:
+    path:    /chantier/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Chantier:modif}
+    requirements:
+      id: \d+
+
+chantier_supp:
+    path:    /chantier/supp/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Chantier:supp}
+    requirements:
+        id: \d+
+
+chantier_consult:
+    path:    chantier/consult/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Chantier:consultChantier }
+    requirements:
+        id: \d+
+    
+index_membres:
+    path:    /membres
+    defaults: { _controller: MaitreOeuvreBundle:Membres:index }  
+    
+ajout_client:
+    path:    membres/client/ajout
+    defaults: { _controller: MaitreOeuvreBundle:Membres:ajoutClient }
+
+ajout_secretaire:
+    path:    membres/secretaire/ajout
+    defaults: { _controller: MaitreOeuvreBundle:Membres:ajoutSecretaire }
+
+client_modif:
+    path:    membres/client/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Membres:modifClient }
+    requirements:
+        id: \d+
+secretaire_modif:
+    path:    membres/secretaire/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Membres:modifSecretaire }
+    requirements:
+        id: \d+
+
+client_supp:
+    path:    membres/client/supp/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Membres:suppClient }
+    requirements:
+        id: \d+
+
+consult_client:
+    path:    membres/client/consult/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Membres:consultClient }
+    requirements:
+        id: \d+
+
+ajout_artisan:
+    path:    membres/artisan/ajout
+    defaults: { _controller: MaitreOeuvreBundle:Membres:ajoutArtisan }
+
+modif_artisan:
+    path:    membres/artisan/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Membres:modifArtisan }
+    requirements:
+        id: \d+
+
+consult_artisan:
+    path:    membres/artisan/consult/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Membres:consultArtisan }
+    requirements:
+        id: \d+
+
+supp_artisan:
+    path:    membres/artisan/supp/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Membres:suppArtisan }
+    requirements:
+        id: \d+
+
+index_etape:
+    path:    /etape
+    defaults: { _controller: MaitreOeuvreBundle:Etape:index }
+
+etape_ajout:
+    path:    /etape/ajout
+    defaults: { _controller: MaitreOeuvreBundle:Etape:ajout }
+
+certification_index:
+    path:    /certification
+    defaults: { _controller: MaitreOeuvreBundle:Certification:index }
+
+certification_ajout:
+    path:    /certification/ajout
+    defaults: { _controller: MaitreOeuvreBundle:Certification:ajoutCertification }
+
+certification_modif:
+    path:    /certification/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Certification:modifCertification }
+    requirements:
+        id: \d+
+
+certification_supp:
+    path:    /certification/supp/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Certification:suppCertification }
+    requirements:
+        id: \d+
+
+specialite_index:
+    path:    /specialite
+    defaults: { _controller: MaitreOeuvreBundle:Specialite:index }
+
+specialite_ajout:
+    path:    /specialite/ajout
+    defaults: { _controller: MaitreOeuvreBundle:Specialite:ajoutSpecialite }
+
+specialite_modif:
+    path:    /specialite/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Specialite:modifSpecialite }
+    requirements:
+        id: \d+
+
+specialite_supp:
+    path:    /specialite/supp/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Specialite:suppSpecialite }
+    requirements:
+        id: \d+
+
+type_chantier_index:
+    path:    /type_chantier
+    defaults: { _controller: MaitreOeuvreBundle:TypeChantier:index }
+
+type_chantier_ajout:
+    path:    /type_chantier/ajout
+    defaults: { _controller: MaitreOeuvreBundle:TypeChantier:ajout }
+
+type_chantier_modif:
+    path:    /type_chantier/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:TypeChantier:modif }
+    requirements:
+        id: \d+
+
+type_chantier_supp:
+    path:    /type_chantier/supp/{id}
+    defaults: { _controller: MaitreOeuvreBundle:TypeChantier:supp }
+    requirements:
+        id: \d+
+
+etape_modif:
+    path:    /etape/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Etape:modif }
+    requirements:
+        id: \d+
+
+etape_supp:
+    path:    /etape/supp/{id}
+    defaults: { _controller: MaitreOeuvreBundle:Etape:supp }
+    requirements:
+        id: \d+
+
+visite_chantier_index:
+    path:    /visite_chantier
+    defaults: { _controller: MaitreOeuvreBundle:VisiteChantier:index }
+
+visite_chantier_ajout:
+    path:    /visite_chantier/ajout
+    defaults: { _controller: MaitreOeuvreBundle:VisiteChantier:ajout }
+
+visite_chantier_modif:
+    path:    /visite_chantier/modif/{id}
+    defaults: { _controller: MaitreOeuvreBundle:VisiteChantier:modif }
+    requirements:
+        id: \d+
+
+visite_chantier_supp:
+    path:    /visite_chantier/supp/{id}
+    defaults: { _controller: MaitreOeuvreBundle:VisiteChantier:supp }
+    requirements:
+        id: \d+
+
+
+active_desactive_membre:
+  path:  /active_desactive_membre
+  defaults: { _controller: MaitreOeuvreBundle:Membres:activeDesactiveMembre }

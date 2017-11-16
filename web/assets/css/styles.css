@@ -1,0 +1,41 @@
+#page-wrapper
+{
+    min-height: 900px !important;    
+}
+.widthForm
+{
+    width : 600px !important ;
+}
+
+.btnMarg
+{
+    font-size: 18px;
+    line-height: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.dim
+{
+    width:50% !important;
+    margin-bottom:25px;
+    margin-top:-21px;
+}
+
+.noneFloat
+{
+    float:none !important;
+}
+
+#artisanCache
+{
+    display:none;
+}
+
+.table
+{
+    margin-top:50px !important;
+}
+
+
+
